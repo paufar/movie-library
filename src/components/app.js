@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies } from '../actions/index';
 import MovieList from '../containers/movie_list';
+import Modal from './movie_details_modal';
 
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { showModal: true};
+	}
+
 	componentDidMount() {
 		this.props.fetchMovies();
 	}
@@ -13,6 +19,11 @@ class App extends Component {
 	    return (
 	      <div className="App">
 	      	<MovieList />
+
+	      	{
+	      		this.state.showModal &&
+	      		<Modal />
+	      	}
 	      </div>
 	    );
 	}
