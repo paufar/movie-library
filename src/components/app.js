@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovies } from '../actions/index';
+import { fetchMovies, fetchGenreList } from '../actions/index';
 import MovieList from '../containers/movie_list';
+import GenreFilter from '../containers/genre_filter';
 import Modal from './movie_details_modal';
 
 
@@ -16,6 +17,7 @@ class App extends Component {
 
 	componentDidMount() {
 		this.props.fetchMovies();
+		this.props.fetchGenreList();
 	}
 
 	handleMovieSelection(movie) {
@@ -30,6 +32,8 @@ class App extends Component {
 	render() {
 	    return (
 	      <div className="App">
+	      	<GenreFilter />
+	      	
 	      	<MovieList onMovieSelect={this.handleMovieSelection}/>
 	      	{
 	      		this.state.showModal && this.state.selectedMovie &&
@@ -42,7 +46,7 @@ class App extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ fetchMovies }, dispatch);
+	return bindActionCreators({ fetchMovies, fetchGenreList }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(App);
