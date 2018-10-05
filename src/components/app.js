@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { fetchMovies, fetchGenreList } from '../actions/index';
 import MovieList from '../containers/movie_list';
 import GenreFilter from '../containers/genre_filter';
+import SearchBar from './search_bar';
 import Modal from './movie_details_modal';
 
 
@@ -32,6 +33,8 @@ class App extends Component {
 	render() {
 	    return (
 	      <div className="App">
+
+			<SearchBar />
 	      	<GenreFilter />
 	      	
 	      	<MovieList onMovieSelect={this.handleMovieSelection}/>
