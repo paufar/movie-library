@@ -5,7 +5,7 @@ const MovieList = (props) => {
 	const movieItems = props.movies.map((movie,i) => {
 		return (
 			<MovieItem 
-				key={`movie-${i}`} 
+				key={movie.id} 
 				movie={movie} />
 		);
 	});
