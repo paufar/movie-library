@@ -11,7 +11,7 @@ const MovieList = (props) => {
 	});
 
 	return (
-		<div className="movie-list">
+		<div className="movie-list-container">
 			<h1>Top Rated Movies</h1>
 			<ul>
 				{ movieItems }

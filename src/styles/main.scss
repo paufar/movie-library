@@ -1,1 +1,14 @@
 @import './shared/reset';
+@import './shared/typography';
+
+:root {
+	--max-mobile-breakpoint: 768px;
+	--max-tablet-breakpoint: 992px;
+	--min-desktop-breakpoint: 1200px;
+};
+
+.App {
+	display: flex;
+	flex-direction: column;
+	padding: 32px;
+}
