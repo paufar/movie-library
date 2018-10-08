@@ -6,7 +6,7 @@ class MovieList extends Component {
 	render() {	
 		const movieItems = this.props.movies.map((movieData) => {
 			return movieData.map((movie,i) => {
-				return <MovieItem key={movie.id} movie={movie} onMovieSelect={this.props.onMovieSelect}/>
+				return <MovieItem key={movie.id} movie={movie} onMovieSelect={this.props.onMovieSelect} getMovieReleaseYear={this.props.getMovieReleaseYear}/>
 			})
 		});
 

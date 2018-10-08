@@ -2,12 +2,7 @@ import React from 'react';
 
 const BASE_IMG_URL = 'http://image.tmdb.org/t/p/w780/';
 
-function getMovieReleaseYear(date) {
-	const releaseDate = new Date(date);
-	return releaseDate.getFullYear();
-}
-
-const Modal = ({ selectedMovie, onCloseModal }) => {
+const Modal = ({ selectedMovie, onCloseModal, getMovieReleaseYear }) => {
 	console.log(selectedMovie);
 	const { title, backdrop_path , overview, release_date } = selectedMovie;
 	return (

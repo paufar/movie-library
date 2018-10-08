@@ -29,6 +29,12 @@ class App extends Component {
 		//disable scrolling when modal is open
 		document.querySelector("body").classList.toggle("modal-open");
 	}
+
+	getMovieReleaseYear(date) {
+		const releaseDate = new Date(date);
+		return releaseDate.getFullYear();
+	}
+
 	handleMovieSelection(movie) {
 		this.setState({
 			selectedMovie: movie
@@ -45,11 +51,11 @@ class App extends Component {
 			      	<GenreFilter />
 		      	</div>
 
-		      	<MovieList onMovieSelect={this.handleMovieSelection}/>
+		      	<MovieList onMovieSelect={this.handleMovieSelection} getMovieReleaseYear={this.getMovieReleaseYear}/>
 	      	</div>
 	      	{
 	      		this.state.showModal && this.state.selectedMovie &&
-	      		<Modal selectedMovie={this.state.selectedMovie} onCloseModal={this.toggleModal}/>
+	      		<Modal selectedMovie={this.state.selectedMovie} onCloseModal={this.toggleModal} getMovieReleaseYear={this.getMovieReleaseYear}/>
 	      	}
 	      </div>
 	    );
