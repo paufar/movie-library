@@ -5,11 +5,6 @@ import { bindActionCreators } from 'redux';
 import { fetchCast } from '../actions/index';
 
 class Cast extends Component {
-	componentWillUnmount() {
-		// Clearing cast list to avoid displaying previous cast before the new cast data has loaded
-		const castListContainer = document.querySelector('.cast > ul');
-		castListContainer.innerHTML = '';
-	}
 	componentDidMount() {
 		this.props.fetchCast(this.props.movieId);
 	}
