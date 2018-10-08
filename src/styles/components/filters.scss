@@ -1,0 +1,61 @@
+@import './components/search_bar';
+
+.filters {
+	display: grid;
+	grid-template-rows: 100% 100%;
+    grid-template-areas: "search-bar" 
+    "genre-filter";
+    grid-gap: 24px;
+    margin-bottom: 32px;
+
+    .search-bar-container {
+    	grid-area: search-bar;
+    }
+
+    .genre-filter {
+    	grid-area: genre-filter;
+    	label, 
+    	select {
+    		display: block;
+    	}
+
+    	label {
+    		font-size: 14px;
+    		margin-left: 12px;
+    		margin-bottom: 4px;
+    	}
+
+    	select {
+    		background-color: transparent;
+    		border: solid 4px transparent;
+    		border-radius: 8px;
+    		height: 32px;
+    		outline: none;
+		    font-size: 16px;
+		    color: var(--grey-light-2);
+
+		    &:selected,
+		    &:focus,
+		    &:active,
+		    &:visited {
+		    	color: var(--grey-light-2);
+		    }
+
+		   	&:hover{
+		    	background-color: var(--grey-dark-3);
+		    	border: solid 4px var(--grey-dark-3);
+		    	cursor: pointer;
+		   	}
+
+
+		    &:focus-within {
+		    	color: var(--yellow);
+		    }
+    	}
+    }
+
+    @media screen and (min-width: 992px) {
+    	grid-gap: 48px;	
+    	grid-template-areas: ". search-bar genre-filter";
+    }
+}

@@ -10,9 +10,13 @@ class GenreFilter extends Component {
 		});
 		
 		return (
-			<select>
-				{ genreList }
-			</select>
+			<div className="genre-filter">
+				<label htmlFor="genre-list">Genre</label>
+				<select id="genre-list">
+					<option value="all" defaultValue>All</option>
+					{ genreList }
+				</select>
+			</div>
 		);
 	}
 } 

@@ -1,6 +1,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
+	color: var(--grey-light-1);
 }
 
 h1 {
@@ -8,14 +9,38 @@ h1 {
 	padding: 24px 0;
 }
 
-h3 {
-	font-size: 24px;
+h2 {
+	font-size: 48px;
+	line-height: 56px;
+	font-weight: 900;
+
 }
 
-.hairline {
+.subheading {
 	text-transform: uppercase;
-	color: grey;
-	font-size: 12px;
-	font-weight: 100;
-	letter-spacing: 0.5px;
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: 0.2px;
+	color: var(--grey-light-2);
+}
+
+.section-label {
+	color: var(--grey-light-2);
+}
+
+label {
+	color: var(--grey-light-3);
+}
+
+.section-label,
+label {
+	text-transform: uppercase;
+	margin: 8px 0;
+	letter-spacing: 0.2px;
+}
+
+@media screen and (min-width: 992px) {
+	h2 {
+		font-size: 56px;
+	}
 }

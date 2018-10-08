@@ -1,14 +1,32 @@
 @import './shared/reset';
 @import './shared/typography';
 
+@import './variables/colors';
+
+@import './components/movie_item';
+@import './components/movie_details_modal';
+@import './components/actor';
+@import './components/filters';
+
+
 body {
 	&.modal-open {
 		overflow: hidden;
+		.body-content {
+			filter: blur(5px);
+		}
 	}
 
 	.App {
 		display: flex;
 		flex-direction: column;
-		padding: 32px;
+		padding: 24px 16px;
+		background-color: var(--grey-dark-2);
+		@media screen and (min-width: 768px) {
+			padding: 32px;
+		}
+		@media screen and (min-width: 992px) {
+			padding: 64px;
+		}
 	}
 }

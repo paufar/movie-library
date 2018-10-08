@@ -1,0 +1,30 @@
+.search-bar-container {
+	input {
+		height: 56px;
+		width: 100%;
+		background-color: var(--grey-dark-3);
+		color: var(--grey-light-2);
+		border-radius: 56px;
+		border: none;
+		outline: none;
+		padding: 16px 32px;
+		font-size: 24px;
+		line-height: 24px;
+		box-sizing: border-box;
+		caret-color: var(--yellow);
+		&::-webkit-input-placeholder{
+			color: var(--grey-light-2);
+		}
+		&:focus {
+			color: white;
+			&::-webkit-input-placeholder{
+				color: var(--grey-dark-2);
+			}
+
+			&::-moz-placeholder,
+			&:-ms-input-placeholder {
+				color: var(--grey-light-3);
+			}
+		}
+	}
+}

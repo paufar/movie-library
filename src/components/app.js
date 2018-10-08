@@ -14,33 +14,42 @@ class App extends Component {
 		this.state = { showModal: false};
 
 		this.handleMovieSelection = this.handleMovieSelection.bind(this);
+		this.toggleModal = this.toggleModal.bind(this);
 	}
 
 	componentDidMount() {
 		this.props.fetchMovies();
 		this.props.fetchGenreList();
 	}
-
-	handleMovieSelection(movie) {
+	toggleModal() {
 		this.setState({
-			showModal: true, 
-			selectedMovie: movie
-		})
-		
+			showModal: !this.state.showModal
+		});
+
 		//disable scrolling when modal is open
 		document.querySelector("body").classList.toggle("modal-open");
+	}
+	handleMovieSelection(movie) {
+		this.setState({
+			selectedMovie: movie
+		})		
+
+		this.toggleModal();
 	}
 	render() {
 	    return (
 	      <div className="App">
+	      	<div className="body-content">
+	      		<div className="filters">
+					<SearchBar />
+			      	<GenreFilter />
+		      	</div>
 
-			<SearchBar />
-	      	<GenreFilter />
-	      	
-	      	<MovieList onMovieSelect={this.handleMovieSelection}/>
+		      	<MovieList onMovieSelect={this.handleMovieSelection}/>
+	      	</div>
 	      	{
 	      		this.state.showModal && this.state.selectedMovie &&
-	      		<Modal selectedMovie={this.state.selectedMovie} onCloseModal={() => this.setState({showModal: !this.state.showModal})}/>
+	      		<Modal selectedMovie={this.state.selectedMovie} onCloseModal={this.toggleModal}/>
 	      	}
 	      </div>
 	    );
