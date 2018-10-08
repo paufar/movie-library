@@ -1,0 +1,39 @@
+.actor {
+	display: inline-block;
+    vertical-align: middle;
+    height: 132px;
+    width: 102px;
+    margin: 16px 16px 16px 0;
+    text-align: center;
+
+    .img-container {
+        width: 88px;
+        height: 88px;
+        padding: 4px;
+        overflow: hidden;
+        background-color: rgba(15, 15, 15, 0.6);
+        margin: 0 4px 8px;
+        margin-bottom: 8px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+
+        .actor-thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-size: contain;
+            background-position: center;
+        }
+    }
+
+    .actor-name {
+    	font-size: 14px;
+    	line-height: 18px;
+    }
+
+    @media screen and (min-width: 992px) {
+        height: 104px;
+    }
+}
