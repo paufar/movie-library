@@ -48,7 +48,7 @@ class App extends Component {
 	      <div className="App">
 	      	<div className="body-content">
 	      		<div className="filters">
-					<SearchBar />
+					<SearchBar onMovieSelect={this.handleMovieSelection} getMovieReleaseYear={this.getMovieReleaseYear}/>
 			      	<GenreFilter />
 		      	</div>
 

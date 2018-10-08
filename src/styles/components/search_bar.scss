@@ -1,8 +1,12 @@
+@import './suggestions.scss';
+
 .search-bar-container {
+	position: relative;
+	
 	input {
 		height: 56px;
 		width: 100%;
-		background-color: var(--grey-dark-3);
+		background-color: var(--grey-dark-2);
 		color: var(--grey-light-2);
 		border-radius: 56px;
 		border: none;
@@ -12,13 +16,16 @@
 		line-height: 24px;
 		box-sizing: border-box;
 		caret-color: var(--yellow);
+		
 		&::-webkit-input-placeholder{
 			color: var(--grey-light-2);
 		}
+		
 		&:focus {
 			color: white;
+			
 			&::-webkit-input-placeholder{
-				color: var(--grey-dark-2);
+				color: var(--grey-dark-1);
 			}
 
 			&::-moz-placeholder,
