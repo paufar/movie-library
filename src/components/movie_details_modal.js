@@ -3,7 +3,6 @@ import Cast from '../containers/cast';
 const BASE_IMG_URL = 'http://image.tmdb.org/t/p/w780/';
 
 const Modal = ({ selectedMovie, onCloseModal, getMovieReleaseYear }) => {
-	console.log(selectedMovie);
 	const { id, title, backdrop_path , overview, release_date } = selectedMovie;
 	return (
 		<div className="modal-outer-container">

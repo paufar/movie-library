@@ -6,8 +6,8 @@ export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const FETCH_GENRES = 'FETCH_GENRES';
 export const FETCH_CAST = 'FETCH_CAST';
 
-export function fetchMovies() {
-	const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`;
+export function fetchMovies(CUSTOM_URL) {
+	const url = `https://api.themoviedb.org/3/${CUSTOM_URL}api_key=${API_KEY}`;
 	const request = axios.get(url);
 	return {
 		type: FETCH_MOVIES,

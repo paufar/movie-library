@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchMovies } from '../actions/index';
 
 class GenreFilter extends Component {
+	constructor(props) {
+		super(props);
+
+		this.filterByGenre = this.filterByGenre.bind(this);
+	}
+	filterByGenre(e) {
+		const GENRE_ID = e.target.value;
+		const filterUrl =  GENRE_ID === 'all' ? 'movie/top_rated?' : `discover/movie?sort_by=popularity.desc&page=1&with_genres=${GENRE_ID}&`;
+		this.props.fetchMovies(filterUrl);
+	}
 	render() {
 		const genreList = this.props.genres.map(list => {
 			return list.map((listItem) => {
-		  		return <option value={listItem.name} key={listItem.id}>{listItem.name}</option>
+		  		return <option value={listItem.id} key={listItem.id}>{listItem.name}</option>
 			});
 		});
 		
 		return (
 			<div className="genre-filter">
 				<label htmlFor="genre-list">Genre</label>
-				<select id="genre-list">
+				<select id="genre-list" onChange={this.filterByGenre}>
 					<option value="all" defaultValue>All</option>
 					{ genreList }
 				</select>
@@ -25,4 +37,8 @@ function mapStateToProps({ genres }) {
 	return { genres };
 }
 
-export default connect(mapStateToProps)(GenreFilter);
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchMovies }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GenreFilter);

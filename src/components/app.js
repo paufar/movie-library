@@ -7,6 +7,7 @@ import GenreFilter from '../containers/genre_filter';
 import SearchBar from './search_bar';
 import Modal from './movie_details_modal';
 
+const topRatedMoviesUrl = 'movie/top_rated?';
 
 class App extends Component {
 	constructor(props) {
@@ -18,7 +19,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchMovies();
+		this.props.fetchMovies(topRatedMoviesUrl);
 		this.props.fetchGenreList();
 	}
 	toggleModal() {
