@@ -9,8 +9,9 @@ const Suggestions = ({results, onMovieSelect, getMovieReleaseYear, handleSelect}
 	  	options = results.map((result) => {
 	  		const year = getMovieReleaseYear(result.release_date);
 
+	  		//onClick method used on the suggestion list items was replaced by onMouseDown because it was conflicting with the onBlur method from the search bar input.
 		    return (
-		    	<li key={result.id} className="suggestion" onClick={() => {onMovieSelect(result); handleSelect()}}>
+		    	<li key={result.id} className="suggestion" onMouseDown={() => {onMovieSelect(result); handleSelect()}}>
 			      	{ result.title }
 			      	<span className="release-date">
 			      		{ isNaN(year) ? '' : year }
