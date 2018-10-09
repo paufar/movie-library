@@ -12,6 +12,7 @@ export default class SearchBar extends Component {
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.toggleSuggestions = this.toggleSuggestions.bind(this);
 		this.handleMovieSelect = this.handleMovieSelect.bind(this);
 		this.getInfo = this.getInfo.bind(this);
 	}
@@ -27,7 +28,7 @@ export default class SearchBar extends Component {
 	}
 
 	toggleSuggestions(searchBarValue) {
-		if(searchBarValue === '') {
+		if(searchBarValue === '' || typeof(searchBarValue) !== 'string') {
 			this.setState({ showSuggestions: false })
 		} else {
 			this.setState({ showSuggestions : true })
@@ -58,7 +59,8 @@ export default class SearchBar extends Component {
 					type="search"
 					placeholder="Search"
 					ref={input => this.search = input}
-         			onChange={this.handleInputChange} />
+         			onChange={this.handleInputChange} 
+         			onBlur={this.toggleSuggestions} />
          			{ 
          				this.state.showSuggestions && 
          				<Suggestions results={this.state.results} onMovieSelect={this.props.onMovieSelect} getMovieReleaseYear={this.props.getMovieReleaseYear} handleSelect={this.handleMovieSelect}/>

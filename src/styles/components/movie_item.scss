@@ -10,9 +10,11 @@
     padding: 8px;
     transition: all 0.2s linear;
     border-radius: 2px;
+    
     &:hover {
-    	background-color: #0f0f0f;
-    	.movie-title {
+    	background-color: var(--grey-dark-3);
+    	
+        .movie-title {
     		color: var(--yellow);
     	}
 
@@ -20,8 +22,11 @@
     		color: var(--grey-light-2);
     	}
     }
+
     >img {
     	margin-bottom: 8px;
+        min-height: 231px;
+        width: 154px;
     }
 
     .movie-title {
@@ -35,6 +40,7 @@
 		color: var(--grey-light-3);
     }
 
+    /* Desktop styling */
     @media screen and (min-width: 992px) {
         margin: 8px 8px 24px;
     }

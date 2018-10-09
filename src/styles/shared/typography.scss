@@ -19,7 +19,7 @@ h2 {
 .subheading {
 	text-transform: uppercase;
 	font-size: 24px;
-	line-height: 32px;
+	line-height: 34px;
 	letter-spacing: 0.2px;
 	color: var(--grey-light-2);
 }
@@ -39,6 +39,7 @@ label {
 	letter-spacing: 0.2px;
 }
 
+/* Desktop styling */
 @media screen and (min-width: 992px) {
 	h2 {
 		font-size: 56px;

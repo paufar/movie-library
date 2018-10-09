@@ -9,10 +9,10 @@
     .img-container {
         width: 88px;
         height: 88px;
-        padding: 4px;
+        padding: 2px;
         overflow: hidden;
-        background-color: rgba(15, 15, 15, 0.6);
-        margin: 0 4px 8px;
+        background-color: rgba(15, 15, 15, 0.4);
+        margin: 0 auto 8px;
         margin-bottom: 8px;
         border-radius: 50%;
         display: flex;
@@ -33,6 +33,7 @@
     	line-height: 18px;
     }
 
+    /* Desktop styling */
     @media screen and (min-width: 992px) {
         height: 104px;
     }

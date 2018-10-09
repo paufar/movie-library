@@ -42,8 +42,8 @@
 		    }
 
 		   	&:hover{
-		    	background-color: var(--grey-dark-3);
-		    	border: solid 4px var(--grey-dark-3);
+		    	background-color: var(--grey-dark-2);
+		    	border: solid 4px var(--grey-dark-2);
 		    	cursor: pointer;
 		   	}
 
@@ -54,8 +54,10 @@
     	}
     }
 
+    /* Desktop styling */
     @media screen and (min-width: 992px) {
     	grid-gap: 48px;	
     	grid-template-areas: ". search-bar genre-filter";
+        grid-template-rows: auto;
     }
 }

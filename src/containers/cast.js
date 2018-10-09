@@ -6,6 +6,7 @@ import { fetchCast } from '../actions/index';
 
 class Cast extends Component {
 	componentDidMount() {
+		//fetching cast data based on selected movie
 		this.props.fetchCast(this.props.movieId);
 	}
 	render() {

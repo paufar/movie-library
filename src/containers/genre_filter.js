@@ -9,21 +9,23 @@ class GenreFilter extends Component {
 
 		this.filterByGenre = this.filterByGenre.bind(this);
 	}
+
 	filterByGenre(e) {
 		const GENRE_ID = e.target.value;
 		const filterUrl =  GENRE_ID === 'all' ? 'movie/top_rated?' : `discover/movie?sort_by=popularity.desc&page=1&with_genres=${GENRE_ID}&`;
 		this.props.fetchMovies(filterUrl);
 	}
+
 	render() {
 		const genreList = this.props.genres.map(list => {
-			return list.map((listItem) => {
-		  		return <option value={listItem.id} key={listItem.id}>{listItem.name}</option>
+			return list.map((genre) => {
+		  		return <option value={genre.id} key={genre.id}>{genre.name}</option>
 			});
 		});
 		
 		return (
 			<div className="genre-filter">
-				<label htmlFor="genre-list">Genre</label>
+				<label>Genre</label>
 				<select id="genre-list" onChange={this.filterByGenre}>
 					<option value="all" defaultValue>All</option>
 					{ genreList }

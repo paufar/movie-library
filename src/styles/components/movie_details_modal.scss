@@ -47,12 +47,13 @@
 				height: 32px;	
 				line-height: 32px;
 				text-align: center;
-				color: var(--grey-dark-3);
+				color: var(--grey-dark-2);
 				transition: all 0.1s linear;
 				&:hover {
 					opacity: 1;
 				}
 			}
+
 			.details {
 				padding: 24px 32px;
 				color: white;
@@ -71,6 +72,7 @@
 						letter-spacing: 0.2px;
 					}
 				}
+
 				.cast {
 					height: 100%;
 				}
@@ -78,7 +80,7 @@
     	}
 	}
 
-
+	/* Desktop styling */
   	@media screen and (min-width: 992px) {
   		.modal-inner-container {
   			width: 900px;
@@ -89,7 +91,7 @@
 		    left: 50%;
 		    overflow: hidden;
 		  	transform: translate(-50%, -50%);
-			background-color: var(--grey-dark-2);
+			background-color: var(--grey-dark-1);
 			border-radius: 16px;
 			background-size: cover;
     		background-position: center;
