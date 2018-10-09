@@ -2,36 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies, fetchGenreList } from '../actions/index';
-import MovieList from '../containers/movie_list';
-import GenreFilter from '../containers/genre_filter';
-import SearchBar from './search_bar';
-import Modal from './movie_details_modal';
+import MovieList from './movie_list';
+import GenreFilter from './genre_filter';
+import SearchBar from '../components/search_bar';
+import Modal from '../components/movie_details_modal';
 
 const topRatedMoviesUrl = 'movie/top_rated?';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { showModal: false};
+		this.state = { showModal: false };
 
 		this.handleMovieSelection = this.handleMovieSelection.bind(this);
 		this.toggleModal = this.toggleModal.bind(this);
 	}
 
 	componentDidMount() {
+		// Fetching the top rated movie list when the app component has loaded
 		this.props.fetchMovies(topRatedMoviesUrl);
 		this.props.fetchGenreList();
 	}
+
 	toggleModal() {
 		this.setState({
 			showModal: !this.state.showModal
 		});
 
-		//disable scrolling when modal is open
+		//Dim background and disable scrolling when modal is open
 		document.querySelector("body").classList.toggle("modal-open");
 	}
 
 	getMovieReleaseYear(date) {
+		//Extracting year from the movie release date
 		const releaseDate = new Date(date);
 		return releaseDate.getFullYear();
 	}
