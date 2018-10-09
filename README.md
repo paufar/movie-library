@@ -1,6 +1,6 @@
 # Movie Library
 
-![Project screenshot](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Project screenshot](https://raw.githubusercontent.com/paufar/movie-library/master/src/images/app-screenshot.png)
 
 This project is a movie browser, using data from [the Movie DB (TMDB) API](https://www.themoviedb.org/documentation/api), that allows the user to browse through a list of top rated movies. 
 
@@ -12,7 +12,7 @@ The application includes the following features:
 * Movie detail view which includes a poster image, a descriptive overview and cast.
 
 ## Demo
-Movie library - Live project [DEMO](https://skempin.github.io/reactjs-tmdb-app/)
+Movie library - Live project [DEMO](https://paufar.github.io/movie-library/)
 
 
 ## Installation
