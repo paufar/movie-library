@@ -1,8 +1,8 @@
-import { FETCH_CAST } from '../actions/index';
+import * as types from '../actions/types';
 
 export default function(state = [], action) {
 	switch(action.type) {
-		case FETCH_CAST: 
+		case types.FETCH_CAST: 
 			return [
 				action.payload.data.cast
 			];

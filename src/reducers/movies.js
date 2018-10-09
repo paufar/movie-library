@@ -1,8 +1,8 @@
-import { FETCH_MOVIES } from '../actions/index';
+import * as types from '../actions/types';
 
 export default function(state = [], action) {
 	switch(action.type) {
-		case FETCH_MOVIES: 
+		case types.FETCH_MOVIES: 
 			return [
 				action.payload.data.results
 			];

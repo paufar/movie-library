@@ -1,8 +1,8 @@
-import { FETCH_GENRES } from '../actions/index';
+import * as types from '../actions/types';
 
 export default function(state = [], action) {
 	switch(action.type) {
-		case FETCH_GENRES: 
+		case types.FETCH_GENRES: 
 			return [
 				...state, 
 				action.payload.data.genres
