@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import MovieItem from '../components/movie_item';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class MovieList extends Component {
 	render() {	
-		const movieItems = this.props.movies.map((movieData) => {
-			return movieData.map((movie,i) => {
-				return <MovieItem key={movie.id} movie={movie} onMovieSelect={this.props.onMovieSelect} getMovieReleaseYear={this.props.getMovieReleaseYear}/>
-			})
-		});
+		const { movies } = this.props;
+		const movieItems = _.map(movies, movie => {
+			return <MovieItem key={movie.id} movie={movie} onMovieSelect={this.props.onMovieSelect} getMovieReleaseYear={this.props.getMovieReleaseYear}/>
+		})
+
+		if(!movies) {
+			return <div>Loading...</div>
+		}
 
 		return (
 			<div className="movie-list-container">

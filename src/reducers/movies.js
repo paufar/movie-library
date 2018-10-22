@@ -1,11 +1,10 @@
 import * as types from '../actions/types';
+import _ from 'lodash';
 
-export default function(state = [], action) {
+export default function(state = {}, action) {
 	switch(action.type) {
 		case types.FETCH_MOVIES: 
-			return [
-				action.payload.data.results
-			];
+			return _.mapKeys(action.payload.data.results, 'id');
 		default:
 			return state;
 	}
