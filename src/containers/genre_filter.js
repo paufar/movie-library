@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies } from '../actions/index';
+import _ from 'lodash';
 
 class GenreFilter extends Component {
 	constructor(props) {
@@ -17,10 +18,9 @@ class GenreFilter extends Component {
 	}
 
 	render() {
-		const genreList = this.props.genres.map(list => {
-			return list.map((genre) => {
-		  		return <option value={genre.id} key={genre.id}>{genre.name}</option>
-			});
+		const { genres } = this.props;
+		const genreList = _.map(genres, genre => {
+		  	return <option value={genre.id} key={genre.id}>{genre.name}</option>
 		});
 		
 		return (
