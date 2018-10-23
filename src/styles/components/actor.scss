@@ -10,12 +10,14 @@
         height: 88px;
         padding: 2px;
         overflow: hidden;
+        position: relative;
         background-color: rgba(15, 15, 15, 0.4);
         margin: 0 auto 8px;
         margin-bottom: 8px;
         border-radius: 50%;
         display: flex;
         align-items: center;
+        z-index: -2;
 
         .actor-thumbnail {
             width: 80px;
@@ -24,6 +26,20 @@
             margin: 0 auto;
             background-size: contain;
             background-position: center;
+        }
+
+        .actor-placeholder-image{
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            background-position: center;
+            background-image: url(../images/actor-placeholder.svg);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
         }
     }
 
