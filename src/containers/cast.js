@@ -6,23 +6,39 @@ import { fetchCast } from '../actions/index';
 import _ from 'lodash'; 
 
 class Cast extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
 	componentDidMount() {
 		//fetching cast data based on selected movie
-		this.props.fetchCast(this.props.movieId);
+		this.props.fetchCast(this.props.movieId, () => {
+			this.setState({
+				castHasBeenFetched: true
+			});
+		});
+	}
+
+	componentWillUnmount() {
+		this.setState({
+			castHasBeenFetched: false
+		});
 	}
 
 	render() {
 		const { cast } = this.props;
+		const { castHasBeenFetched } = this.state;
+		const actorsPlaceHolder = _.times('8',(i) => { return <Actor key={i} thumbnail="placeholder" /> });
 		const actors = _.map(cast, actor => {
 			return <Actor key={actor.credit_id} name={actor.name} thumbnail={actor.profile_path}/>
 		});
 
 		return (
-			!_.isEmpty(cast) && 
+			!_.isEmpty(cast) &&
 			<div className="cast">
 				<h3 className="section-label">Cast</h3>
 				<ul>
-					{ actors }
+				{ castHasBeenFetched ? actors : actorsPlaceHolder }
 				</ul>
 			</div>
 		);

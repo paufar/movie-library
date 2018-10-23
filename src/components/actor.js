@@ -2,7 +2,7 @@ import React from 'react';
 import actorPlaceHolderImage from '../images/actor-placeholder.svg';
 
 const Actor = ({thumbnail , name}) => {		
-	const image = thumbnail === null ? `url(${actorPlaceHolderImage})` : `url(http://image.tmdb.org/t/p/w185/${thumbnail})`; 
+	const image = thumbnail === null || thumbnail === 'placeholder' ? `url(${actorPlaceHolderImage})` : `url(http://image.tmdb.org/t/p/w185/${thumbnail})`; 
 	return (
 		<li className="actor">
 			<div className="img-container">

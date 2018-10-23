@@ -21,9 +21,14 @@ export function fetchGenreList() {
 	}
 }
 
-export function fetchCast(MOVIE_ID) {
+export function fetchCast(MOVIE_ID, callback) {
 	const url = `https://api.themoviedb.org/3/movie/${MOVIE_ID}/credits?api_key=${API_KEY}`;
-	const request = axios.get(url);
+	const request = axios.get(url)
+	.then( response => {
+		callback();
+		return response;
+	});
+
 	return {
 		type: types.FETCH_CAST, 
 		payload: request
