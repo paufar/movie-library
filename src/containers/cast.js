@@ -8,7 +8,9 @@ import _ from 'lodash';
 class Cast extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			castHasBeenFetched: false
+		};
 	}
 	componentDidMount() {
 		//fetching cast data based on selected movie
@@ -16,12 +18,6 @@ class Cast extends Component {
 			this.setState({
 				castHasBeenFetched: true
 			});
-		});
-	}
-
-	componentWillUnmount() {
-		this.setState({
-			castHasBeenFetched: false
 		});
 	}
 
