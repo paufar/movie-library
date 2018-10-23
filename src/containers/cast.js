@@ -13,15 +13,12 @@ class Cast extends Component {
 
 	render() {
 		const { cast } = this.props;
-
 		const actors = _.map(cast, actor => {
 			return <Actor key={actor.credit_id} name={actor.name} thumbnail={actor.profile_path}/>
 		});
 
-		if(!cast) {
-			return <div>Loading...</div>
-		}
 		return (
+			!_.isEmpty(cast) && 
 			<div className="cast">
 				<h3 className="section-label">Cast</h3>
 				<ul>
@@ -29,6 +26,7 @@ class Cast extends Component {
 				</ul>
 			</div>
 		);
+	
 	}
 } 
 
