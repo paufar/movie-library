@@ -11,7 +11,8 @@
     transition: all 0.2s linear;
     border-radius: 2px;
     
-    &:hover {
+    &:hover, 
+    &:active {
     	background-color: var(--grey-dark-3);
     	
         .movie-title {
