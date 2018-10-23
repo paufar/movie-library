@@ -36,12 +36,12 @@ class Actor extends Component {
 		const { name} = this.props;
 
 		return (
-			<li className="actor">
+			<div className="actor">
 				<div className="img-container">
 					<div className="actor-thumbnail" style={{backgroundImage: `url(${this.state.src || actorPlaceHolderImage})`}}></div>
 				</div>
 				<p className="actor-name">{ name }</p>
-			</li>
+			</div>
 		);
 	}
 }
