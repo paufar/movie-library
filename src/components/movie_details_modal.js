@@ -15,19 +15,26 @@ class Modal extends Component {
 	}
 
 	handleModalNavigation(e, navigation, currentMovieItem) {
+		//ToDo: handle keyboard navigation
 		e.stopPropagation();
 		const { movies } = this.props;
+		document.querySelector('.modal-navigation-btn').style.visibility = 'visible';
 		if(navigation === 'previous') {
-			//check if the first element
 			const movieBeforeId = currentMovieItem.previousSibling.dataset.id;
 			const prevMovieData = movies[movieBeforeId];
 			this.setState({ selectedMovie: prevMovieData });
+			if (currentMovieItem.previousSibling.previousSibling === null) {
+				document.querySelector('.previous-btn').style.visibility = 'hidden';
+			}
 
 		} else if(navigation === 'next') {
-			//check if the last element
+			//ToDo: check if the last element
 			const movieAfterId = currentMovieItem.nextSibling.dataset.id;
 			const nextMovieData = movies[movieAfterId];
 			this.setState({ selectedMovie: nextMovieData });	
+			if (currentMovieItem.nextSibling.nextSibling === null) {
+				document.querySelector('.next-btn').style.visibility = 'hidden';
+			}
 		}
 	}
 
@@ -36,7 +43,7 @@ class Modal extends Component {
 		const { selectedMovie } = this.state;
 		const { id, title, backdrop_path , overview, release_date } = selectedMovie;
 		const currentMovieItem = document.querySelector(`.movie-item[data-id='${id}']`);
-		
+
 		return (
 			<div className="modal-outer-container" onClick={onCloseModal}>
 				<div className="modal-navigation-btn previous-btn" onClick={(e) => this.handleModalNavigation(e ,'previous', currentMovieItem)}> ← </div>
