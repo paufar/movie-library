@@ -6,6 +6,7 @@ const Modal = ({ selectedMovie, onCloseModal, getMovieReleaseYear }) => {
 	const { id, title, backdrop_path , overview, release_date } = selectedMovie;
 	return (
 		<div className="modal-outer-container" onClick={onCloseModal}>
+			<div className="modal-navigation-btn previous-btn"> ← </div>
 			<div className="modal-inner-container" onClick={(e) => e.stopPropagation()} style={{backgroundImage: `url(${BASE_IMG_URL}${backdrop_path}`}}>
 				<div className="backdrop">
 					<div className="close-btn" onClick={onCloseModal}>×</div>
@@ -19,6 +20,7 @@ const Modal = ({ selectedMovie, onCloseModal, getMovieReleaseYear }) => {
 					</div>
 				</div>
 			</div>
+			<div className="modal-navigation-btn next-btn">→</div>
 		</div>
 	);
 }
