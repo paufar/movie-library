@@ -12,17 +12,35 @@ class Cast extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			castHasBeenFetched: false
+			currentMovieId: this.props.movieId
 		};
 	}
 	componentDidMount() {
+		this.mounted = true;
 		//fetching cast data based on selected movie
-		this.props.fetchCast(this.props.movieId, () => {
+		this.props.fetchCast(this.state.currentMovieId, () => {
 			this.setState({
 				castHasBeenFetched: true
 			});
 		});
 	}
+
+	componentWillReceiveProps(nextProps){
+        if(nextProps.movieId !== this.props.currentMovieId && this.mounted){
+            this.setState({
+            	currentMovieId: nextProps.movieId
+            }, () => {
+            	this.props.fetchCast(this.state.currentMovieId, () => {
+					this.setState({
+						castHasBeenFetched: true
+					})
+				})
+            });
+        }
+    }
+    componentWillUnmount() {
+    	this.mounted = false;
+    }
 
 	render() {
 		const { cast } = this.props;

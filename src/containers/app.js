@@ -39,7 +39,7 @@ class App extends Component {
 		return releaseDate.getFullYear();
 	}
 
-	handleMovieSelection(movie) {
+	handleMovieSelection(movie, e) {
 		this.setState({
 			selectedMovie: movie
 		})		
