@@ -16,7 +16,7 @@ class Cast extends Component {
 		};
 	}
 	componentDidMount() {
-		// this.mounted = true;
+		this.mounted = true;
 		//fetching cast data based on selected movie
 		this.props.fetchCast(this.state.currentMovieId, () => {
 			this.setState({
@@ -25,22 +25,22 @@ class Cast extends Component {
 		});
 	}
 
-	// componentWillReceiveProps(nextProps){
- //        if(nextProps.movieId !== this.props.currentMovieId && this.mounted){
- //            this.setState({
- //            	currentMovieId: nextProps.movieId
- //            }, () => {
- //            	this.props.fetchCast(this.state.currentMovieId, () => {
-	// 				this.setState({
-	// 					castHasBeenFetched: true
-	// 				})
-	// 			})
- //            });
- //        }
- //    }
- //    componentWillUnmount() {
- //    	this.mounted = false;
- //    }
+	componentDidUpdate() {
+		this.mounted && this.state.currentMovieId !== this.props.movieId &&
+		this.setState({
+			currentMovieId: this.props.movieId
+		}, () => {
+			this.props.fetchCast(this.state.currentMovieId, () => {
+					this.setState({
+						castHasBeenFetched: true
+					})
+				})
+		});
+	}
+
+    componentWillUnmount() {
+    	this.mounted = false;
+    }
 
 	render() {
 		const { cast } = this.props;
