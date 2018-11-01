@@ -3,12 +3,16 @@ import Cast from '../containers/cast';
 import { connect } from 'react-redux';
 const BASE_IMG_URL = 'http://image.tmdb.org/t/p/w780/'; //Size options for images: "w92", "w154", "w185", "w342", "w500", "w780", or "original"
 
-
 class Modal extends Component {
 	constructor(props) {
 		super(props);
+		
+		const movieList = document.querySelector('.movie-list-container ul');
 		this.state = {
-			selectedMovie: this.props.selectedMovie
+			selectedMovie: this.props.selectedMovie,
+			movieItem: document.querySelector(`.movie-item[data-id='${this.props.selectedMovie.id}']`),
+			firstChildId : parseInt(movieList.firstChild.dataset.id), 
+			lastChildId: parseInt(movieList.lastChild.dataset.id)
 		};
 
 		this.handleModalNavigation = this.handleModalNavigation.bind(this);
@@ -16,15 +20,25 @@ class Modal extends Component {
 	}
 
 	componentDidMount() {
+		this.mounted = true;
 		this.showHideNavButtons("load", this.state.selectedMovie.id, this.state.selectedMovie);
+		this.mounted && document.addEventListener('keydown', (e) => {
+			if (e.keyCode === 39 && this.state.selectedMovie.id !== this.state.lastChildId) {
+				this.handleModalNavigation(e, "next", this.state.movieItem);
+			} else if(e.keyCode === 37 && this.state.selectedMovie.id !== this.state.firstChildId) {
+				this.handleModalNavigation(e, "previous", this.state.movieItem);
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.mounted = false;
 	}
 
 	showHideNavButtons(event, id, currentMovieItem) {
-		const movieList = document.querySelector('.movie-list-container ul');
-		const firstChildId = parseInt(movieList.firstChild.dataset.id);
-		const lastChildId = parseInt(movieList.lastChild.dataset.id);
-		
-		//ToDo: Refactor here
+		const {lastChildId, firstChildId} = this.state;
+
+		//ToDo: Refactor here - duplicate code
 		if (event === 'load') {
 			if(id === firstChildId) {
 				document.querySelector('.previous-btn').style.visibility = 'hidden';
@@ -47,22 +61,24 @@ class Modal extends Component {
 			const movieBeforeId = currentMovieItem.previousSibling.dataset.id;
 			const prevMovieData = movies[movieBeforeId];
 			
-			this.setState({ selectedMovie: prevMovieData });
+			this.setState({ selectedMovie: prevMovieData }, () => {
+				this.setState({
+					movieItem: document.querySelector(`.movie-item[data-id='${this.state.selectedMovie.id}']`)
+				})
+			});
 			this.showHideNavButtons("previous", movieBeforeId, currentMovieItem);
-			// if (currentMovieItem.previousSibling.previousSibling === null) {
-			// 	document.querySelector('.previous-btn').style.visibility = 'hidden';
-			// }
 
 		} else if(navigation === 'next') {
 			const movieAfterId = currentMovieItem.nextSibling.dataset.id;
 			const nextMovieData = movies[movieAfterId];
 
-			this.setState({ selectedMovie: nextMovieData });	
+			//ToDo: refactor duplcicate code
+			this.setState({ selectedMovie: nextMovieData }, () => {
+				this.setState({
+					movieItem: document.querySelector(`.movie-item[data-id='${this.state.selectedMovie.id}']`)
+				})
+			});	
 			this.showHideNavButtons("next", movieAfterId, currentMovieItem);
-
-			// if (currentMovieItem.nextSibling.nextSibling === null) {
-			// 	document.querySelector('.next-btn').style.visibility = 'hidden';
-			// }
 		}
 	}
 
