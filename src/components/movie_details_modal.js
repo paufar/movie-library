@@ -12,8 +12,32 @@ class Modal extends Component {
 		};
 
 		this.handleModalNavigation = this.handleModalNavigation.bind(this);
+
 	}
 
+	componentDidMount() {
+		this.showHideNavButtons("load", this.state.selectedMovie.id, this.state.selectedMovie);
+	}
+
+	showHideNavButtons(event, id, currentMovieItem) {
+		const movieList = document.querySelector('.movie-list-container ul');
+		const firstChildId = parseInt(movieList.firstChild.dataset.id);
+		const lastChildId = parseInt(movieList.lastChild.dataset.id);
+		
+		//ToDo: Refactor here
+		if (event === 'load') {
+			if(id === firstChildId) {
+				document.querySelector('.previous-btn').style.visibility = 'hidden';
+			} else if ( id === lastChildId) {
+				document.querySelector('.next-btn').style.visibility = 'hidden';	
+			}
+		} else if(event === 'previous' && currentMovieItem.previousSibling.previousSibling === null) {
+			document.querySelector('.previous-btn').style.visibility = 'hidden';
+		} else if (event === 'next' && currentMovieItem.nextSibling.nextSibling === null) {
+			document.querySelector('.next-btn').style.visibility = 'hidden';	
+		}
+
+	}
 	handleModalNavigation(e, navigation, currentMovieItem) {
 		//ToDo: handle keyboard navigation
 		e.stopPropagation();
@@ -22,19 +46,23 @@ class Modal extends Component {
 		if(navigation === 'previous') {
 			const movieBeforeId = currentMovieItem.previousSibling.dataset.id;
 			const prevMovieData = movies[movieBeforeId];
+			
 			this.setState({ selectedMovie: prevMovieData });
-			if (currentMovieItem.previousSibling.previousSibling === null) {
-				document.querySelector('.previous-btn').style.visibility = 'hidden';
-			}
+			this.showHideNavButtons("previous", movieBeforeId, currentMovieItem);
+			// if (currentMovieItem.previousSibling.previousSibling === null) {
+			// 	document.querySelector('.previous-btn').style.visibility = 'hidden';
+			// }
 
 		} else if(navigation === 'next') {
-			//ToDo: check if the last element
 			const movieAfterId = currentMovieItem.nextSibling.dataset.id;
 			const nextMovieData = movies[movieAfterId];
+
 			this.setState({ selectedMovie: nextMovieData });	
-			if (currentMovieItem.nextSibling.nextSibling === null) {
-				document.querySelector('.next-btn').style.visibility = 'hidden';
-			}
+			this.showHideNavButtons("next", movieAfterId, currentMovieItem);
+
+			// if (currentMovieItem.nextSibling.nextSibling === null) {
+			// 	document.querySelector('.next-btn').style.visibility = 'hidden';
+			// }
 		}
 	}
 
